@@ -4,6 +4,7 @@ import  style from "./todo.module.css"
 import Completeditem from "./Completeditem"
 
 const Todolist=({todoarr,deletetodo,isCompleted,complete,btncomplete}) =>{
+const [show,setShow] =React.useState(true)
     return (
       <div className={style.box3}>
           
@@ -13,11 +14,13 @@ const Todolist=({todoarr,deletetodo,isCompleted,complete,btncomplete}) =>{
                   ))
               }
               <div>
-                  <button className={style.btn1} >show completed todos</button>
-                 
-                 { complete.map((el)=>(
+                  <button className={style.btn1} onClick={()=>setShow(!show)} >{show?" Hide Completed todo":"Show completed todo"}</button>
+                 {show?<div>
+                    { complete.map((el)=>(
                         <Completeditem valuec={el.value} key={complete.id} />
                      )) }
+                 </div> : false}
+                
                      </div> 
       </div>
 
